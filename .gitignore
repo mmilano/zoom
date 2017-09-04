@@ -1,0 +1,9 @@
+#osx stuff
+.DS_Store
+
+# node stuff
+node_modules
+npm-debug.log
+
+# destination folders for builds
+build

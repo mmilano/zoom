@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset='utf-8'/>
+    <meta charset="utf-8">
+
 	<title>jQuery Zoom Demo</title>
 	<style>
 		/* styles unrelated to zoom */
@@ -13,14 +14,14 @@
 			display:inline-block;
 			position: relative;
 		}
-		
+
 		/* magnifying glass icon */
 		.zoom:after {
 			content:'';
-			display:block; 
-			width:33px; 
-			height:33px; 
-			position:absolute; 
+			display:block;
+			width:33px;
+			height:33px;
+			position:absolute;
 			top:0;
 			right:0;
 			background:url(icon.png);
@@ -35,18 +36,34 @@
 		#ex2 img:hover { cursor: url(grab.cur), default; }
 		#ex2 img:active { cursor: url(grabbed.cur), default; }
 	</style>
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-	<script src='jquery.zoom.js'></script>
+
+<!--
 	<script>
 		$(document).ready(function(){
 			$('#ex1').zoom();
 			$('#ex2').zoom({ on:'grab' });
-			$('#ex3').zoom({ on:'click' });			 
+			$('#ex3').zoom({ on:'click' });
 			$('#ex4').zoom({ on:'toggle' });
 		});
 	</script>
+ -->
 </head>
 <body>
+
+
+    <div class="project-image project-image-zoom" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab","magnify":"0.6"}'>
+
+        <figure class="figure figure-full figure-bordered zoom">
+            <div class="figure-image image-zoom">
+                <img class="figure-img img-fluid" src="../../../public/assets/images/portfolio/alpine/sierra/userpath/user-path@1x.jpg" alt="Whiteboard" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+            </div>
+        </figure>
+
+    </div>
+
+
+
 	<span class='zoom' id='ex1'>
 		<img src='daisy.jpg' width='555' height='320' alt='Daisy on the Ohoopee'/>
 		<p>Hover</p>
@@ -63,5 +80,14 @@
 		<img src='roxy.jpg' width='290' height='320' alt='Roxy on the Ohoopee'/>
 		<p>Click to toggle</p>
 	</span>
+
+
+<!--     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        crossorigin="anonymous"></script>
+	<script src='jquery.zoom.js'></script>
+
 </body>
 </html>

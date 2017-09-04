@@ -13,15 +13,19 @@
 		"url": "http://www.jacklmoore.com",
 		"email": "hello@jacklmoore.com"
 	},
-	"main": "jquery.zoom.js",
+	"main": "index.html",
 	"license": "MIT",
-	"homepage": "http://www.jacklmoore.com/zoom",
-	"demo": "http://www.jacklmoore.com/zoom",
 	"repository": {
 		"type": "git",
-		"url": "http://github.com/jackmoore/zoom.git"
+		"url": "http://github.com/mmilano/zoom.git"
 	},
 	"dependencies": {
-		"jquery": ">=1.7"
+		"jquery": ">=3.1"
+	},
+	"devDependencies": {
+		"browserify": "^14.4.0",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^4.0.0",
+		"gulp-sass": "^3.1.0"
 	}
 }
