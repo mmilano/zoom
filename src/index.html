@@ -10,12 +10,15 @@
 		p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
 
 		/* these styles are for the demo, but are not required for the plugin */
+/*
 		.zoom {
 			display:inline-block;
 			position: relative;
 		}
+ */
 
 		/* magnifying glass icon */
+/*
 		.zoom:after {
 			content:'';
 			display:block;
@@ -26,15 +29,18 @@
 			right:0;
 			background:url(icon.png);
 		}
+ */
 
+/*
 		.zoom img {
 			display: block;
 		}
+ */
 
-		.zoom img::selection { background-color: transparent; }
+/* 		.zoom img::selection { background-color: transparent; } */
 
-		#ex2 img:hover { cursor: url(grab.cur), default; }
-		#ex2 img:active { cursor: url(grabbed.cur), default; }
+/* 		#ex2 img:hover { cursor: url(grab.cur), default; } */
+/* 		#ex2 img:active { cursor: url(grabbed.cur), default; } */
 	</style>
 
 <!--
@@ -51,17 +57,42 @@
 <body>
 
 
-    <div class="project-image project-image-zoom" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab","magnify":"0.6"}'>
+    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
 
-        <figure class="figure figure-full figure-bordered zoom">
-            <div class="figure-image image-zoom">
-                <img class="figure-img img-fluid" src="../../../public/assets/images/portfolio/alpine/sierra/userpath/user-path@1x.jpg" alt="Whiteboard" title="Hold and drag to view in detail." />
+        <figure>
+            <div class="image-zoom">
+                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
                 <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
             </div>
         </figure>
 
     </div>
 
+
+
+
+    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
+
+        <figure>
+            <div class="image-zoom">
+                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+            </div>
+        </figure>
+
+    </div>
+
+
+    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
+
+        <figure>
+            <div class="image-zoom">
+                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+            </div>
+        </figure>
+
+    </div>
 
 
 	<span class='zoom' id='ex1'>
@@ -82,12 +113,12 @@
 	</span>
 
 
-<!--     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
     <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
         crossorigin="anonymous"></script>
-	<script src='jquery.zoom.js'></script>
+	<script src="./assets/js/gjquery.zoom.js"></script>
+	<script src="./assets/js/jquery.zoom.js"></script>
 
 </body>
 </html>
