@@ -101,7 +101,7 @@ const autoprefixerOptions = {
 };
 
 
-gulp.task("compile-sass", function compileSASS() {
+gulp.task("compile:sass", function compileSASS() {
 
     return gulp
     .src(sassSource)
@@ -113,7 +113,7 @@ gulp.task("compile-sass", function compileSASS() {
     .pipe(sourcemaps.write("./map"))
     .pipe(gulp.dest(cssDestination))
     .on("end", function(event) {
-        console.log("compile-sass complete");
+        console.log("compile:sass complete");
     });
 });
 
@@ -122,7 +122,7 @@ var sassSourceGLOB = "./src/scss/**/*.scss";
 
 gulp.task("watch:sass", function() {
     return gulp
-    .watch(sassSource, ["compile-sass"])
+    .watch(sassSource, ["compile"sass"])
 	.on("error", err => gutil.log("watch error: " + err.message))
     .on("change", function(event) {
         console.log("watch:sass >>> File " + event.path + " was " + event.type );
@@ -135,9 +135,6 @@ gulp.task("watch:sass", function() {
 // JS files
 
 
-// all the js files
-const jsSourceGLOB =        ["./js/**/*.js"];
-
 // the custom js file
 const jsSource =        ["./src/js/**/*.js"];
 
@@ -148,20 +145,15 @@ const jsSourceVENDORFiles = ["./src/js/zoom/**/*.js"];
 const jsSourceIgnore = [
     "!" + jsSourceVENDORFiles,
     ];
-const jsSources = jsSourceGLOB.concat(jsSourceIgnore);
 
-const jsDestination = zoomBuildDestinationRoot + "/public/assets/js";
-
-
-// jshintrc config file
-const jshintConfiguration = "./config/jshintrc.json";
+const jsDestination = zoomBuildDestinationRoot + "/assets/js";
 
 // basic js lint task
 gulp.task("lint-js", function listJS() {
     return gulp
     .src(jsSource)
     .pipe(cached("jslint"))
-    .pipe(jshint(jshintConfiguration))
+    .pipe(jshint())
     .pipe(jshint.reporter("default"));
 });
 
@@ -174,9 +166,9 @@ var browserifyDest = jsDestination + browserifyDestFile;
 
 function browserifyScript(file) {
     var bundleOptions = {
-            entries: ["./src/js/site/" + file],
-            paths: ["./src/js/site/"],
-            standalone: "site",
+            entries: ["./src/js/" + file],
+            paths: ["./src/js/"],
+            standalone: "zoom",
             debug: true
         };
     var bundler = browserify(bundleOptions);
@@ -187,7 +179,7 @@ function browserifyScript(file) {
         .on('error', err => gutil.log("browserifyScript (minify) error: " + err.message))
         .pipe(source(browserifyMinDestinationFile))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init())
         // Add transformation tasks to the pipeline here
         //.pipe( buildType === "production" ? uglify() : gutil.noop() )
         // end transforms
@@ -220,7 +212,7 @@ var indexDestination = zoomBuildDestinationRoot;
 
 gulp.task("build:index", function buildIndex() {
 
-    // just copy the index file in this case
+    // just copy the index file in this demo
 
     return gulp
     .src(indexPage)
@@ -247,8 +239,20 @@ gulp.task("watch:js", function watchJS() {
     });
 });
 
+gulp.task("watch:sass", function() {
+    return gulp
+    .watch(sassSource, ["compile:sass"])
+	.on("error", err => gutil.log("watch error: " + err.message))
+    .on("change", function(event) {
+        console.log("watch:sass >>> File " + event.path + " was " + event.type );
+    });
+});
 
-
+gulp.task("watch", [], function watchAll() {
+    gulp.start(["watch:sass"]);
+    gulp.start(["watch:js"]);
+    gulp.start(["watch:index"]);
+});
 
 // watch all the things
 // gulp.task("watch", ["watch:sass", "watch:js", "watch:content", "watch:BBEDITpages", "watch:index"]);
@@ -262,31 +266,17 @@ gulp.task("watch", [], function watchAll() {
 
 gulp.task("default", ["zoom:setup", "watch"], function taskDefault() {
 
-    gulp.start(["compile-sass", "browserify-site-js", "browserify-vendor-js"]);
+    gulp.start(["compile:sass", "browserify-site-js", "browserify-vendor-js"]);
+    gulp.start(["build:index"]);
 
 });
 
 gulp.task("dev", ["watch"], function taskDevDefault() {
-
-    buildType = "development";
-
-    gulp.start(["compile-sass", "browserify-site-js", "browserify-vendor-js"]);
-
-});
-
-
-
-//build tasks with minification, etc.
-gulp.task("production", [], function() {
-
-    buildType = "production";
-
-    gulp.start("compile-sass");
-
+    gulp.start(["compile:sass"]);
     gulp.start(["browserify-site-js"]);
-    gulp.start(["browserify-vendor-js"]);
-
-
-    //buildType = "development";
+    gulp.start(["build:index"]);
 });
+
+
+
 
