@@ -1,0 +1,15 @@
+{
+    "browser":      true,
+    "browserify":   true,
+    "jquery":       true,
+    "node":         true,
+    "eqeqeq":       true,
+    "latedef":      true,
+    "loopfunc":     true,
+
+    "debug":        true,
+    "devel":        false,
+    "multistr":     true,
+
+    "-W032":        false
+}
