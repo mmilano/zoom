@@ -1,6 +1,20 @@
 // styles for the image zoom widget function
 //
 
+@mixin cursor-grab {
+    cursor: grab;
+}
+
+@mixin cursor-grabbing {
+    cursor: grabbing;
+}
+
+@mixin zoom-transition-out {
+    transition: all 0.3s ease-in;
+}
+
+$core-white: #FFF;
+
 $zoom-icon-position-top: 0px;
 $zoom-icon-position-right: 0px;
 
@@ -10,9 +24,6 @@ $zoom-icon-glyph:   "\f002";  // fa-search - &#xf002
 $zoom-icon-font-size: 1rem;
 $zoom-icon-font-size-hover: 1.6rem;
 
-@mixin zoom-transition-out {
-    transition: all 0.3s ease-in;
-}
 
 
 // overrides for the regular figure image border behavior.
@@ -22,8 +33,7 @@ $zoom-icon-font-size-hover: 1.6rem;
 .figure-bordered.zoom {
     .image-zoom {
         position: relative;
-        display: block;  // attempted fix for space underneath
-        @include subtle_border ($default-border-color);
+        display: block; // attempted fix for space underneath
 
         img {
             border: 0;
@@ -40,7 +50,6 @@ $zoom-icon-font-size-hover: 1.6rem;
 
         display: inline-block;
         position: absolute;
-
         top: $zoom-icon-position-top;
         right: $zoom-icon-position-right;
         width: 90px;
@@ -63,6 +72,7 @@ $zoom-icon-font-size-hover: 1.6rem;
             border-left: $zoom-cornermarker-width solid transparent;
             @include zoom-transition-out;
         }
+        // magnifying glass icon
         .icon {
             display: inline-block;
             position: absolute;
@@ -74,19 +84,9 @@ $zoom-icon-font-size-hover: 1.6rem;
             content: $zoom-icon-glyph;
             @include zoom-transition-out;
         }
-        // magnifying glass icon
-//         &::after {
-//             position: absolute;
-//             top: 2px;
-//             right: 6px;
-//             color: $core-white;
-//             font-family: FontAwesome;
-//             font-size: $zoom-icon-font-size;
-//             content: $zoom-icon-glyph;
-//         }
-
     }
 
+    // small animation effect on hover
     &:hover {
         .zoom-glyph {
             .corner {
