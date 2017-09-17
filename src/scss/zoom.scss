@@ -1,6 +1,8 @@
 // styles for the image zoom widget function
 //
 
+
+// utility mixins
 @mixin cursor-grab {
     cursor: grab;
 }
@@ -10,18 +12,32 @@
 }
 
 @mixin zoom-transition-out {
-    transition: all 0.3s ease-in;
+    transition: all 0.25s ease-in;
 }
 
-$core-white: #FFF;
+
+// zoom widget attributes
+
+
 
 $zoom-icon-position-top: 0px;
 $zoom-icon-position-right: 0px;
 
-$zoom-cornermarker-width: 50px;
-$zoom-cornermarker-color: rgba(#000000, 0.5);
-$zoom-icon-glyph:   "\f002";  // fa-search - &#xf002
+$zoom-corner-size: 50px;
+$zoom-corner-color: rgba(#000000, 0.5);
+
+// hit width & height determine size of target hit area
+// min = $zoom-corner-width
+$zoom-hit-width: $zoom-corner-size + 40;
+$zoom-hit-height: $zoom-corner-size + 40;
+
+// default icon glyph
+$zoom-icon-position-x: 6px;
+$zoom-icon-position-y: 5px;
+$zoom-icon-glyph:   "\f002";  // fa-search
 $zoom-icon-font-size: 1rem;
+
+// transformation when hovering
 $zoom-icon-font-size-hover: 1.6rem;
 
 
@@ -30,16 +46,16 @@ $zoom-icon-font-size-hover: 1.6rem;
 // the zoomable version requires a more complicated enveloping of the img. named ".image-zoom"
 // turn on the border for the envelope, turn off the border on the figure image.
 // position relative in order to make the icon position correctly on load.
-.figure-bordered.zoom {
-    .image-zoom {
-        position: relative;
-        display: block; // attempted fix for space underneath
-
-        img {
-            border: 0;
-        }
-    }
-}
+// .figure-bordered.zoom {
+//     .image-zoom {
+//         position: relative;
+//         display: block; // attempted fix for space underneath
+// 
+//         img {
+//             border: 0;
+//         }
+//     }
+// }
 
 .image-zoom {
     display: inline-block;
@@ -52,33 +68,26 @@ $zoom-icon-font-size-hover: 1.6rem;
         position: absolute;
         top: $zoom-icon-position-top;
         right: $zoom-icon-position-right;
-        width: 90px;
-        height: 90px;
+        width: $zoom-hit-width;
+        height: $zoom-hit-height;
 
-        // 'cut' triangle across corner
-//         &::before {
-//             content: '';
-//             position: absolute;
-//             top: 0;
-//             right: 0;
-//             border-top: $zoom-cornermarker-size solid $zoom-cornermarker-color;
-//             border-left: $zoom-cornermarker-size solid transparent;
-//         }
+        // css-generated corner overlay
         .corner {
             position: absolute;
             top: 0;
             right: 0;
-            border-top: $zoom-cornermarker-width solid $zoom-cornermarker-color;
-            border-left: $zoom-cornermarker-width solid transparent;
+            border-top: $zoom-corner-size solid $zoom-corner-color;
+            border-left: $zoom-corner-size solid transparent;
             @include zoom-transition-out;
         }
+
         // magnifying glass icon
         .icon {
             display: inline-block;
             position: absolute;
-            top: 5px;
-            right: 6px;
-            color: $core-white;
+            top: $zoom-icon-position-y;
+            right: $zoom-icon-position-x;
+            color: #FFF;
             font-family: FontAwesome;
             font-size: $zoom-icon-font-size;
             content: $zoom-icon-glyph;
@@ -86,19 +95,19 @@ $zoom-icon-font-size-hover: 1.6rem;
         }
     }
 
-    // small animation effect on hover
+    // animation effect for the zoom icon on hover
     &:hover {
         .zoom-glyph {
             .corner {
-                border-top-width: $zoom-cornermarker-width + 15;
-                border-left-width: $zoom-cornermarker-width + 15;
-                transition: border 0.67s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border-top-width: $zoom-corner-size + 15;
+                border-left-width: $zoom-corner-size + 15;
+                transition: border 0.51s ease-in-out;
             }
             .icon {
                 top: 5px;
                 right: 6px;
                 font-size: $zoom-icon-font-size-hover;
-                transition: font 0.3s ease-out;
+                transition: font 0.3s ease-out .1s;
             }
         }
     }
@@ -117,5 +126,15 @@ $zoom-icon-font-size-hover: 1.6rem;
         &:active {
             @include cursor-grabbing;
         }
+    }
+}
+
+
+
+// styling for the demo. not required for the widget
+.zoom-example {
+    figure {
+        width: 500px;
+        height: auto;
     }
 }

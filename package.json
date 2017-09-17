@@ -1,5 +1,5 @@
 {
-	"name": "jquery-zoom",
+	"name": "jquery-zoom-mod",
 	"description": "Enlarge images on click or mouseover.",
 	"version": "1.7.20",
 	"keywords": [
@@ -13,6 +13,12 @@
 		"url": "http://www.jacklmoore.com",
 		"email": "hello@jacklmoore.com"
 	},
+	"contributors": [
+		{
+			"name": "Michel Milano",
+			"url": "http://www.stochasticnotions.com"
+		}
+	],
 	"main": "index.html",
 	"license": "MIT",
 	"repository": {
@@ -20,7 +26,8 @@
 		"url": "http://github.com/mmilano/zoom.git"
 	},
 	"dependencies": {
-		"jquery": ">=3.1"
+		"jquery": ">=3.1",
+		"jquery-zoom": "^1.7.20"
 	},
 	"devDependencies": {
 		"browserify": "^14.4.0",
@@ -35,6 +42,8 @@
 		"gulp-rename": "^1.2.2",
 		"gulp-sass": "^3.1.0",
 		"gulp-sourcemaps": "^2.6.1",
-		"jshint": "^2.9.5"
+		"jshint": "^2.9.5",
+		"vinyl-buffer": "^1.0.0",
+		"vinyl-source-stream": "^1.1.0"
 	}
 }

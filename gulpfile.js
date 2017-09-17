@@ -7,12 +7,11 @@ var gutil =         require("gulp-util");
 var sass =          require("gulp-sass");
 var autoprefixer =  require("gulp-autoprefixer");
 
-
 // javascript
 var jshint =        require("gulp-jshint");
 var browserify =    require("browserify");
-// var source =        require('vinyl-source-stream');
-
+var source =        require("vinyl-source-stream");
+var buffer =        require("vinyl-buffer");
 
 // webserver
 var connect =       require("gulp-connect");
@@ -35,9 +34,8 @@ var fs =            require("fs");
 // **********
 // build globals
 
-const zoomBuildDestinationRoot = "./build/";
+const zoomBuildRoot = "./build/";
 var zoomBuildSrc = "./src/";
-// var zoomBuildSrcRoot = "./src/content/pages/";
 
 
 
@@ -46,9 +44,9 @@ var zoomBuildSrc = "./src/";
 
 var serverOptions = {
     name: "dev",
-    port: 9191,
+    port: 9999,
     defaultFile: "index.html",
-    root: zoomBuildDestinationRoot,
+    root: zoomBuildRoot,
     livereload: true,
     directoryListing: {
       enable: false,
@@ -62,17 +60,7 @@ gulp.task("webserver", function webserver() {
 
 
 // **********
-// utility: move/copy things that need to be moved and copied
-
-gulp.task("zoom:copy", [ "copy:js-vendor", "copy:css-vendor"]);
-
-gulp.task("zoom:setup", ["build:clean"], function zoomSetup() {
-    gulp.start(["zoom:copy"]);
-});
-
-
-
-// cleans
+// clean
 // erases the existing built files, clean out the compiled stuff
 
 const cleanLocations = [
@@ -84,32 +72,48 @@ gulp.task("build:clean", function buildClean() {
 });
 
 
+// **********
+// utility: move/copy things that need to be moved and copied
+
+gulp.task("zoom:setup", ["build:clean"], function zoomSetup() {
+    gulp.start(["copy:images"]);
+});
+
+
+var imgSource =      "./src/img/**/*.+(png|jpg|jpeg|gif|svg)";
+var imgDestination =     zoomBuildRoot + "./assets/img/";
+
+gulp.task("copy:images", function copyImages() {
+    return gulp
+    .src([imgSource])
+    .pipe(gulp.dest(imgDestination));
+});
+
+
 // ********************
 // compile sass/css
 
 const sassSource =       "./src/scss/**/*.scss";
-const cssDestination =   zoomBuildDestinationRoot + "/assets/css";
+const cssDestination =   zoomBuildRoot + "/assets/css";
 
 const sassOptions = {
     errLogToConsole: true,
-    outputStyle: "compact",
-    sourceComments: false,
+    outputStyle: "expanded",
+    sourceComments: true,
 };
 
 const autoprefixerOptions = {
     browsers: ["last 2 versions"],
 };
 
-
 gulp.task("compile:sass", function compileSASS() {
-
     return gulp
     .src(sassSource)
     .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on("error", sass.logError))
     .pipe(autoprefixer(autoprefixerOptions))
-    //.pipe(rename({ suffix: ".min" }))
-    // .pipe( buildType === "production" ? cssnano() : gutil.noop() )
+//     .pipe(rename({ suffix: ".min" }))        // disabled minification of css
+//     .pipe(cssnano())                         // disabled minification of css
     .pipe(sourcemaps.write("./map"))
     .pipe(gulp.dest(cssDestination))
     .on("end", function(event) {
@@ -122,7 +126,7 @@ var sassSourceGLOB = "./src/scss/**/*.scss";
 
 gulp.task("watch:sass", function() {
     return gulp
-    .watch(sassSource, ["compile"sass"])
+    .watch(sassSource, ["compile:sass"])
 	.on("error", err => gutil.log("watch error: " + err.message))
     .on("change", function(event) {
         console.log("watch:sass >>> File " + event.path + " was " + event.type );
@@ -132,8 +136,7 @@ gulp.task("watch:sass", function() {
 
 
 // **********
-// JS files
-
+// assemble javascript
 
 // the custom js file
 const jsSource =        ["./src/js/**/*.js"];
@@ -146,7 +149,7 @@ const jsSourceIgnore = [
     "!" + jsSourceVENDORFiles,
     ];
 
-const jsDestination = zoomBuildDestinationRoot + "/assets/js";
+const jsDestination = zoomBuildRoot + "/assets/js";
 
 // basic js lint task
 gulp.task("lint-js", function listJS() {
@@ -160,14 +163,13 @@ gulp.task("lint-js", function listJS() {
 
 // var browserifySourceFile =  "./src/js/site/site.js";
 var browserifyDestFile = "zoom.js";
-var browserifyMinDestinationFile = "zoom.min.js";
 var browserifyDest = jsDestination + browserifyDestFile;
 
 
 function browserifyScript(file) {
     var bundleOptions = {
             entries: ["./src/js/" + file],
-            paths: ["./src/js/"],
+            paths: ["./src/js/*"],
             standalone: "zoom",
             debug: true
         };
@@ -176,8 +178,8 @@ function browserifyScript(file) {
     var stream = bundler.bundle();
 
     return stream
-        .on('error', err => gutil.log("browserifyScript (minify) error: " + err.message))
-        .pipe(source(browserifyMinDestinationFile))
+        .on('error', err => gutil.log("browserify error: " + err.message))
+        .pipe(source(browserifyDestFile))
         .pipe(buffer())
         .pipe(sourcemaps.init())
         // Add transformation tasks to the pipeline here
@@ -189,15 +191,13 @@ function browserifyScript(file) {
             console.log("browserify ZOOM complete");
         });
 
-
-//     return;s
+//     return;
 }
 
 // browserify the site js code
 gulp.task("browserify-zoom-js", [], function browserifyZoomJS() {
-    return browserifyScript("main.zoom.js");
+    return browserifyScript("src.zoom.js");
 });
-
 
 
 
@@ -205,21 +205,24 @@ gulp.task("browserify-zoom-js", [], function browserifyZoomJS() {
 
 
 // **********
-// watch folders for changes
+// index/demo page
 
 var indexPage =        "./src/index.html";
-var indexDestination = zoomBuildDestinationRoot;
+var indexDestination = zoomBuildRoot;
 
 gulp.task("build:index", function buildIndex() {
-
     // just copy the index file in this demo
-
     return gulp
     .src(indexPage)
     .pipe(gulp.dest(indexDestination));
 });
 
 
+
+
+
+// **********
+// watching tasks
 
 gulp.task("watch:index", function watchIndex() {
     return gulp
@@ -239,7 +242,7 @@ gulp.task("watch:js", function watchJS() {
     });
 });
 
-gulp.task("watch:sass", function() {
+gulp.task("watch:sass", function watchSASS() {
     return gulp
     .watch(sassSource, ["compile:sass"])
 	.on("error", err => gutil.log("watch error: " + err.message))
@@ -248,26 +251,20 @@ gulp.task("watch:sass", function() {
     });
 });
 
-gulp.task("watch", [], function watchAll() {
-    gulp.start(["watch:sass"]);
-    gulp.start(["watch:js"]);
-    gulp.start(["watch:index"]);
-});
-
 // watch all the things
-// gulp.task("watch", ["watch:sass", "watch:js", "watch:content", "watch:BBEDITpages", "watch:index"]);
-
 
 gulp.task("watch", [], function watchAll() {
     gulp.start(["watch:sass"]);
     gulp.start(["watch:js"]);
     gulp.start(["watch:index"]);
 });
+
+
 
 gulp.task("default", ["zoom:setup", "watch"], function taskDefault() {
-
-    gulp.start(["compile:sass", "browserify-site-js", "browserify-vendor-js"]);
-    gulp.start(["build:index"]);
+    // gulp.start(["webserver"]);
+    // gulp.start(["compile:sass", "browserify-site-js", "browserify-vendor-js"]);
+    gulp.start(["compile:sass", "browserify-zoom-js", "build:index"]);
 
 });
 
@@ -276,7 +273,3 @@ gulp.task("dev", ["watch"], function taskDevDefault() {
     gulp.start(["browserify-site-js"]);
     gulp.start(["build:index"]);
 });
-
-
-
-

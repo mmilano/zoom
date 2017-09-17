@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//code.jquery.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
 
-	<title>jQuery Zoom Demo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./assets/css/zoom.css" rel="stylesheet">
+
+	<title>jQuery++ Zoom Demo</title>
+
 	<style>
 		/* styles unrelated to zoom */
+/*
 		* { border:0; margin:0; padding:0; }
 		p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
+ */
 
 		/* these styles are for the demo, but are not required for the plugin */
 /*
@@ -43,82 +51,63 @@
 /* 		#ex2 img:active { cursor: url(grabbed.cur), default; } */
 	</style>
 
-<!--
-	<script>
-		$(document).ready(function(){
-			$('#ex1').zoom();
-			$('#ex2').zoom({ on:'grab' });
-			$('#ex3').zoom({ on:'click' });
-			$('#ex4').zoom({ on:'toggle' });
-		});
-	</script>
- -->
 </head>
 <body>
 
-
-    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
+    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"mouseover", "magnify":"2"}'>
 
         <figure>
             <div class="image-zoom">
-                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
-                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+                <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Willow" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Hover over the image to zoom."><div class="corner"></div><span class="icon fa fa-search"></span></div>
             </div>
+            <figcaption>Hover (aka. mouseover)</figcaption>
         </figure>
 
     </div>
 
-
-
-
-    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
+    <div class="zoom-example" id="example2" data-imagezoom="example2" data-zoom-options='{"on":"grab", "magnify":"2"}'>
 
         <figure>
             <div class="image-zoom">
-                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
-                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+                <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Daisy" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Grab the image to zoom."><div class="corner"></div><span class="icon fa fa-search"></span></div>
             </div>
+            <figcaption>Grab</figcaption>
         </figure>
 
     </div>
 
-
-    <div class="zoom-example" id="example1" data-imagezoom="example1" data-zoom-options='{"on":"grab", "magnify":"0.6"}'>
+    <div class="zoom-example" id="example3" data-imagezoom="example3" data-zoom-options='{"on":"click", "magnify":"2"}'>
 
         <figure>
             <div class="image-zoom">
-                <img class="figure-img img-fluid" src="./assets/img/portfolio/daisy.jpg" alt="Daisy" title="Hold and drag to view in detail." />
-                <div class="zoom-glyph" title="Grab the image to view more closely."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+                <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Daisy" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Click the image to zoom."><div class="corner"></div><span class="icon fa fa-search"></span></div>
             </div>
+            <figcaption>Click to activate</figcaption>
         </figure>
 
     </div>
 
+    <div class="zoom-example" id="example4" data-imagezoom="example4" data-zoom-options='{"on":"toggle", "magnify":"2"}'>
 
-	<span class='zoom' id='ex1'>
-		<img src='daisy.jpg' width='555' height='320' alt='Daisy on the Ohoopee'/>
-		<p>Hover</p>
-	</span>
-	<span class='zoom' id='ex2'>
-		<img src='roxy.jpg' width='290' height='320' alt='Roxy on the Ohoopee'/>
-		<p>Grab</p>
-	</span>
-	<span class='zoom' id='ex3'>
-		<img src='daisy.jpg' width='555' height='320' alt='Daisy on the Ohoopee'/>
-		<p>Click to activate</p>
-	</span>
-	<span class='zoom' id='ex4'>
-		<img src='roxy.jpg' width='290' height='320' alt='Roxy on the Ohoopee'/>
-		<p>Click to toggle</p>
-	</span>
+        <figure>
+            <div class="image-zoom">
+                <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Daisy" title="Hold and drag to view in detail." />
+                <div class="zoom-glyph" title="Click/toggle the image to zoom."><div class="corner"></div><span class="icon fa fa-search"></span></div>
+            </div>
+            <figcaption>Click to toggle</figcaption>
+        </figure>
+
+    </div>
 
 
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-	<script src="./assets/js/gjquery.zoom.js"></script>
-	<script src="./assets/js/jquery.zoom.js"></script>
+	<script src="./assets/js/zoom.js"></script>
 
 </body>
 </html>
