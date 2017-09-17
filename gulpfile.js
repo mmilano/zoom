@@ -78,10 +78,8 @@ gulp.task("zoom:setup", ["build:clean"], function zoomSetup() {
     gulp.start(["copy:images"]);
 });
 
-
-
 var imgSource =      "./src/img/**/*.+(png|jpg|jpeg|gif|svg)";
-var imgDestination =     zoomBuildRoot + "./assets/img/";
+var imgDestination = zoomBuildRoot + "./assets/img/";
 
 gulp.task("copy:images", function copyImages() {
     return gulp
@@ -94,8 +92,8 @@ gulp.task("copy:images", function copyImages() {
 // ********************
 // compile sass/css
 
-const sassSource =       "./src/scss/**/*.scss";
-const cssDestination =   zoomBuildRoot + "/assets/css";
+const sassSource =     "./src/scss/**/*.scss";
+const cssDestination = zoomBuildRoot + "/assets/css";
 
 const sassOptions = {
     errLogToConsole: true,
@@ -142,7 +140,6 @@ gulp.task("watch:sass", function() {
 
 // the custom js file
 const jsSource =        ["./src/js/**/*.js"];
-const jsSourceVENDORFiles = ["./src/js/zoom/**/*.js"];
 const jsDestination = zoomBuildRoot + "/assets/js";
 
 // basic js lint task
