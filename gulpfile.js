@@ -18,17 +18,14 @@ var connect =       require("gulp-connect");
 
 // tools
 var sourcemaps =    require("gulp-sourcemaps");
-
 var rename =        require("gulp-rename");
-
-// var cache =         require("gulp-cache");
 var cached =        require("gulp-cached");
 // var changed =       require("gulp-changed");
 // var changedInPlace = require("gulp-changed-in-place");
-
 var clean =         require("del");
 var path =          require("path");
 var fs =            require("fs");
+
 
 
 // **********
@@ -59,6 +56,7 @@ gulp.task("webserver", function webserver() {
 });
 
 
+
 // **********
 // clean
 // erases the existing built files, clean out the compiled stuff
@@ -72,12 +70,14 @@ gulp.task("build:clean", function buildClean() {
 });
 
 
+
 // **********
 // utility: move/copy things that need to be moved and copied
 
 gulp.task("zoom:setup", ["build:clean"], function zoomSetup() {
     gulp.start(["copy:images"]);
 });
+
 
 
 var imgSource =      "./src/img/**/*.+(png|jpg|jpeg|gif|svg)";
@@ -88,6 +88,7 @@ gulp.task("copy:images", function copyImages() {
     .src([imgSource])
     .pipe(gulp.dest(imgDestination));
 });
+
 
 
 // ********************
@@ -135,20 +136,13 @@ gulp.task("watch:sass", function() {
 
 
 
+
 // **********
 // assemble javascript
 
 // the custom js file
 const jsSource =        ["./src/js/**/*.js"];
-
 const jsSourceVENDORFiles = ["./src/js/zoom/**/*.js"];
-
-// what dir/files to ignore.
-// if it is precompiled, a package distribution, etc., it should be ignored for linting
-const jsSourceIgnore = [
-    "!" + jsSourceVENDORFiles,
-    ];
-
 const jsDestination = zoomBuildRoot + "/assets/js";
 
 // basic js lint task
@@ -161,10 +155,8 @@ gulp.task("lint-js", function listJS() {
 });
 
 
-// var browserifySourceFile =  "./src/js/site/site.js";
 var browserifyDestFile = "zoom.js";
 var browserifyDest = jsDestination + browserifyDestFile;
-
 
 function browserifyScript(file) {
     var bundleOptions = {
@@ -183,7 +175,7 @@ function browserifyScript(file) {
         .pipe(buffer())
         .pipe(sourcemaps.init())
         // Add transformation tasks to the pipeline here
-        //.pipe( buildType === "production" ? uglify() : gutil.noop() )
+//         .pipe(uglify())         // disabled minification of js
         // end transforms
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(jsDestination))
@@ -191,16 +183,12 @@ function browserifyScript(file) {
             console.log("browserify ZOOM complete");
         });
 
-//     return;
 }
 
 // browserify the site js code
 gulp.task("browserify-zoom-js", [], function browserifyZoomJS() {
     return browserifyScript("src.zoom.js");
 });
-
-
-
 
 
 
@@ -216,8 +204,6 @@ gulp.task("build:index", function buildIndex() {
     .src(indexPage)
     .pipe(gulp.dest(indexDestination));
 });
-
-
 
 
 
@@ -259,11 +245,9 @@ gulp.task("watch", [], function watchAll() {
     gulp.start(["watch:index"]);
 });
 
-
-
+// default build task
 gulp.task("default", ["zoom:setup", "watch"], function taskDefault() {
-    // gulp.start(["webserver"]);
-    // gulp.start(["compile:sass", "browserify-site-js", "browserify-vendor-js"]);
+    gulp.start(["webserver"]);
     gulp.start(["compile:sass", "browserify-zoom-js", "build:index"]);
 
 });
