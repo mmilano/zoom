@@ -1,16 +1,15 @@
 // 	Zoom widget initialization
-//     initializes jquery.zoom.js
 
 var zoom = require("jquery-zoom");
 
 (function ($) {
     "use strict";
 
-    // initialize zoom
+    // initialize on document.ready event
     $(document).ready(function() {
 
         // gather up all the zoom's on the page, if there are any, and then initialize them.
-        // images with zoom have data-imagezoom="" & data-zoom-options="" attributes
+        // images with zoom have data-imagezoom="..." & data-zoom-options="..." attributes
         var elementsList = document.querySelectorAll("[data-imagezoom]");  // css syntax
 
         var ln = elementsList.length;
@@ -19,7 +18,7 @@ var zoom = require("jquery-zoom");
 
             var zoomOptions, w, attr = el.getAttribute("data-zoom-options");
             try {
-                // parse the options
+                // try to parse the options
                 zoomOptions = attr && JSON.parse(attr);
             } catch (error) {
                 if (console) {
@@ -28,25 +27,12 @@ var zoom = require("jquery-zoom");
                 return;
             }
 
+            // select the element
             w = $(".image-zoom", el);
+            // invoke the jquery.zoom function, passing the options
             w.zoom(zoomOptions);
         }
 
-//         elementsList.forEach(function(el) {
-//             var zoomOptions, attr = el.getAttribute("data-zoom-options");
-//
-//             try {
-//                 zoomOptions = attr && JSON.parse(attr);
-//             } catch (error) {
-//                 if (console) {
-//                     console.error("Error with " + attr + " on " + el.className + ": " + error);
-//                 }
-//                 return;
-//             }
-//
-//             var w = $(".image-zoom", el);
-//             w.zoom(zoomOptions);
-//         });
     });
 
 }(jQuery));
