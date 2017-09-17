@@ -11,18 +11,19 @@
     cursor: grabbing;
 }
 
+// transition used when returning to default state
 @mixin zoom-transition-out {
-    transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in-out;
 }
 
 
 // zoom widget attributes
 
-
-
 $zoom-icon-position-top: 0px;
 $zoom-icon-position-right: 0px;
 
+$zoom-corner-position-top: 0px;
+$zoom-corner-position-right: 0px;
 $zoom-corner-size: 50px;
 $zoom-corner-color: rgba(#000000, 0.5);
 
@@ -34,28 +35,14 @@ $zoom-hit-height: $zoom-corner-size + 40;
 // default icon glyph
 $zoom-icon-position-x: 6px;
 $zoom-icon-position-y: 5px;
-$zoom-icon-glyph:   "\f002";  // fa-search
+$zoom-icon-glyph: "\f002";  // fa-search
 $zoom-icon-font-size: 1rem;
+$zoom-icon-glyph-color: #FFFFFF;
 
 // transformation when hovering
 $zoom-icon-font-size-hover: 1.6rem;
+$zoom-corner-size-hover: $zoom-corner-size + 15;
 
-
-
-// overrides for the regular figure image border behavior.
-// the zoomable version requires a more complicated enveloping of the img. named ".image-zoom"
-// turn on the border for the envelope, turn off the border on the figure image.
-// position relative in order to make the icon position correctly on load.
-// .figure-bordered.zoom {
-//     .image-zoom {
-//         position: relative;
-//         display: block; // attempted fix for space underneath
-// 
-//         img {
-//             border: 0;
-//         }
-//     }
-// }
 
 .image-zoom {
     display: inline-block;
@@ -74,8 +61,8 @@ $zoom-icon-font-size-hover: 1.6rem;
         // css-generated corner overlay
         .corner {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: $zoom-corner-position-top;
+            right: $zoom-corner-position-right;
             border-top: $zoom-corner-size solid $zoom-corner-color;
             border-left: $zoom-corner-size solid transparent;
             @include zoom-transition-out;
@@ -87,10 +74,12 @@ $zoom-icon-font-size-hover: 1.6rem;
             position: absolute;
             top: $zoom-icon-position-y;
             right: $zoom-icon-position-x;
-            color: #FFF;
+
             font-family: FontAwesome;
             font-size: $zoom-icon-font-size;
+            color: $zoom-icon-glyph-color;
             content: $zoom-icon-glyph;
+
             @include zoom-transition-out;
         }
     }
@@ -99,15 +88,15 @@ $zoom-icon-font-size-hover: 1.6rem;
     &:hover {
         .zoom-glyph {
             .corner {
-                border-top-width: $zoom-corner-size + 15;
-                border-left-width: $zoom-corner-size + 15;
+                border-top-width: $zoom-corner-size-hover;
+                border-left-width: $zoom-corner-size-hover;
                 transition: border 0.51s ease-in-out;
             }
             .icon {
-                top: 5px;
-                right: 6px;
+//                 top: 5px;
+//                 right: 6px;
                 font-size: $zoom-icon-font-size-hover;
-                transition: font 0.3s ease-out .1s;
+                transition: font 0.40s ease-out .11s;
             }
         }
     }
@@ -126,15 +115,5 @@ $zoom-icon-font-size-hover: 1.6rem;
         &:active {
             @include cursor-grabbing;
         }
-    }
-}
-
-
-
-// styling for the demo. not required for the widget
-.zoom-example {
-    figure {
-        width: 500px;
-        height: auto;
     }
 }
