@@ -1,17 +1,21 @@
-// styling for the demo presentation. 
+// presentation styling for the demonstration.
 // not required for the widget
 
+figure {
+    margin-bottom: 2rem;
+}
 
-.zoom-example {
-    figure {
-        width: 500px;
-        height: auto;
-    }
+figcaption {
+    font-weight: 600;
 }
 
 
 .image-zoom {
-    width: 500px;
-    height: 400px;
+    width: 39rem;
+    height: auto;
+}
 
+.img-fluid {
+    width: 100%;
+    height: auto;
 }
