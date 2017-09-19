@@ -11,14 +11,13 @@
     cursor: grabbing;
 }
 
-// transition used when returning to default state
+// transition used when returning to default non-hover state
 @mixin zoom-transition-out {
     transition: all 0.25s ease-in-out;
 }
 
 
-// zoom widget attributes
-
+// zoom widget variables
 $zoom-icon-position-top: 0px;
 $zoom-icon-position-right: 0px;
 
@@ -28,6 +27,7 @@ $zoom-corner-size: 50px;
 $zoom-corner-color: rgba(#000000, 0.5);
 
 // hit width & height determine size of target hit area
+// expanded to make larger zone
 // min = $zoom-corner-width
 $zoom-hit-width: $zoom-corner-size + 40;
 $zoom-hit-height: $zoom-corner-size + 40;
@@ -35,7 +35,7 @@ $zoom-hit-height: $zoom-corner-size + 40;
 // default icon glyph
 $zoom-icon-position-x: 6px;
 $zoom-icon-position-y: 5px;
-$zoom-icon-glyph: "\f002";  // fa-search
+// $zoom-icon-glyph: "\f002";  // fa-search
 $zoom-icon-font-size: 1rem;
 $zoom-icon-glyph-color: #FFFFFF;
 
@@ -46,8 +46,9 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
 
 .image-zoom {
     display: inline-block;
+    position: relative;
 
-    // bit overlaying the image with "zoom" glyph
+    // element overlaying the image with magnifying glass glyph
     .zoom-glyph {
         z-index: 2;
 
@@ -65,12 +66,14 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
             right: $zoom-corner-position-right;
             border-top: $zoom-corner-size solid $zoom-corner-color;
             border-left: $zoom-corner-size solid transparent;
+
             @include zoom-transition-out;
         }
 
         // magnifying glass icon
         .icon {
             display: inline-block;
+
             position: absolute;
             top: $zoom-icon-position-y;
             right: $zoom-icon-position-x;
@@ -78,8 +81,7 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
             font-family: FontAwesome;
             font-size: $zoom-icon-font-size;
             color: $zoom-icon-glyph-color;
-            content: $zoom-icon-glyph;
-
+            // content: $zoom-icon-glyph;
             @include zoom-transition-out;
         }
     }
@@ -93,8 +95,6 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
                 transition: border 0.51s ease-in-out;
             }
             .icon {
-//                 top: 5px;
-//                 right: 6px;
                 font-size: $zoom-icon-font-size-hover;
                 transition: font 0.40s ease-out .11s;
             }
