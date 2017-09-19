@@ -28,7 +28,7 @@ var zoom = require("jquery-zoom");
             }
 
             // select the element
-            w = $(".image-zoom", el);
+            w = $(".image-zoomable", el);
             // invoke the jquery.zoom function, passing the options
             w.zoom(zoomOptions);
         }

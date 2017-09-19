@@ -18,49 +18,53 @@
 
 
 // zoom widget variables
-$zoom-icon-position-top: 0px;
-$zoom-icon-position-right: 0px;
 
+
+// position of the zoom-indicator element (ie the corner cutout + icon)
+$zoom-mark-position-top: 0px;
+$zoom-ark-position-right: 0px;
+
+
+// position the cutout notch at the top right of the element
 $zoom-corner-position-top: 0px;
 $zoom-corner-position-right: 0px;
-$zoom-corner-size: 50px;
-$zoom-corner-color: rgba(#000000, 0.5);
 
-// hit width & height determine size of target hit area
-// expanded to make larger zone
+$zoom-corner-size: 50px;  // width (in square) of the notch
+$zoom-corner-color: rgba(#000000, 0.5);  //color of the notch
+
+// width & height determine size of target hit area, expanded to make larger zone
 // min = $zoom-corner-width
 $zoom-hit-width: $zoom-corner-size + 40;
 $zoom-hit-height: $zoom-corner-size + 40;
 
-// default icon glyph
+// icon glyph
+// position the icon at the top right
 $zoom-icon-position-x: 6px;
 $zoom-icon-position-y: 5px;
-// $zoom-icon-glyph: "\f002";  // fa-search
 $zoom-icon-font-size: 1rem;
 $zoom-icon-glyph-color: #FFFFFF;
 
-// transformation when hovering
+// transformations when hovering
 $zoom-icon-font-size-hover: 1.6rem;
 $zoom-corner-size-hover: $zoom-corner-size + 15;
 
 
-.image-zoom {
+.image-zoomable {
     display: inline-block;
     position: relative;
 
     // element overlaying the image with magnifying glass glyph
-    .zoom-glyph {
+    .zoom-mark {
         z-index: 2;
-
-        display: inline-block;
+        display: block;
         position: absolute;
-        top: $zoom-icon-position-top;
-        right: $zoom-icon-position-right;
+        top: $zoom-mark-position-top;
+        right: $zoom-mark-position-right;
         width: $zoom-hit-width;
         height: $zoom-hit-height;
 
-        // css-generated corner overlay
-        .corner {
+        // css-generated corner 'notch' graphic
+        .cutout {
             position: absolute;
             top: $zoom-corner-position-top;
             right: $zoom-corner-position-right;
@@ -88,8 +92,8 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
 
     // animation effect for the zoom icon on hover
     &:hover {
-        .zoom-glyph {
-            .corner {
+        .zoom-mark {
+            .cutout {
                 border-top-width: $zoom-corner-size-hover;
                 border-left-width: $zoom-corner-size-hover;
                 transition: border 0.51s ease-in-out;
