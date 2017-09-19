@@ -184,7 +184,7 @@ function browserifyScript(file) {
 
 // browserify the site js code
 gulp.task("browserify-zoom-js", [], function browserifyZoomJS() {
-    return browserifyScript("src.zoom.js");
+    return browserifyScript("init.zoom.js");
 });
 
 
