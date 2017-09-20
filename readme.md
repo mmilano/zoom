@@ -90,7 +90,7 @@ npm install
 
 4. Run the gulp build task.
 
-````
+```
 gulp
 ```
 
