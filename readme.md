@@ -62,17 +62,15 @@ See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for doc
 #### For development
 * node
 * npm
-
+* numerous node modules (including the original jquery.zoom library), which are handled by npm
 
 #### For usage
 * jquery
 * FontAwesome
 
-
 ## Installation
 
 1. git clone/download locally.
-
 
 2. Expand, and navigate to the new directory.
 
@@ -82,8 +80,7 @@ cd zoom-plus
 
 ```
 
-3. Initialize the project. This will chug along, downloading all the dependencies
-`npm install`
+3. Initialize the project. This will chug along for a bit, downloading all the module dependencies
 
 ```
 npm install
@@ -98,7 +95,7 @@ gulp
 ```
 
 
-5. Open to the demo webserver.
+5. Browse to the local webserver to view the demo page
 
 ```
 http://localhost:9999
