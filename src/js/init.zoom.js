@@ -9,8 +9,8 @@ var zoom = require("jquery-zoom");
     $(document).ready(function() {
 
         // gather up all the zoom's on the page, if there are any, and then initialize them.
-        // images with zoom have data-imagezoom="..." & data-zoom-options="..." attributes
-        var elementsList = document.querySelectorAll("[data-imagezoom]");  // css syntax
+        // images with zoom have data-imagezoom-id="..." & data-zoom-options="..." attributes
+        var elementsList = document.querySelectorAll("[data-imagezoom-id]");  // css syntax
 
         var ln = elementsList.length;
         for (var i = 0; i < ln; i++) {
@@ -18,7 +18,7 @@ var zoom = require("jquery-zoom");
 
             var zoomOptions, w, attr = el.getAttribute("data-zoom-options");
             try {
-                // try to parse the options
+                // parse the options
                 zoomOptions = attr && JSON.parse(attr);
             } catch (error) {
                 if (console) {
