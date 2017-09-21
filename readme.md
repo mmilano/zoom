@@ -3,7 +3,7 @@
 Founded on top of the jquery.zoom plugin, this version wraps the original widget into a module with slightly different clothes,
 converting the front-end of the widget to use css and webfont elements, and altering the structure of the html image element.
 
-### Changes from the original
+### Changes From the Original
 
 
 * Incorporates the original js widget into a self-executing module that will run on the document.ready event and 
@@ -17,20 +17,15 @@ automatically initialize all of the image-zoom elements it can find on the page.
 * Replaced the magnifying glass image with FontAwesome glyph.
 * Featuring a new dog.
 
-#### Uses 
-[jQuery.zoom](https://github.com/jackmoore/zoom) plugin to enlarge images on touch, click, or mouseover. 
-See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the plugin details.
-
-
 
 ## Background
-I originally adapted this widget to use as part of a larger project I was developing, and have broken it out here as a stand-alone resource and demonstration.
-The original project included dynamically-generated image elements on the page, and I wanted a widget that would be more autonomous than the original widget.
+I adapted the original library to use as part of a larger project I was developing, and have broken it out here as a stand-alone resource and demonstration.
+The larger project includes dynamically-generated image elements on a page, and I wanted a widget that would be more autonomous than the original, one where the settings for the widget were incorporated with the instance itself.
 
-If some of the decisions made here seem curious to you (e.g. all of fontawesome for just one glyph?), that is probably the explanation.
+Note that if some of the decisions made here seem curious to you (e.g. all of fontawesome for just one glyph?), the explanation probably lies in the circumstance that this is an extracted part of a larger project. 
 
 
-## Example
+## Example Element
 
 ```
     <div class="zoom-example" id="example" data-imagezoom-id="example" data-zoom-options='{"on":"mouseover", "magnify":"2"}'>
@@ -49,8 +44,9 @@ If some of the decisions made here seem curious to you (e.g. all of fontawesome 
 See `index.html` for a working demonstration.
 
 
+## Usage
 
-each image element must have a unique id and the data-imagezoom-id value must also be the id.
+Each image element must have a unique id and the data-imagezoom-id value must also be the id.
 
 The data-zoom-options attribute is a json-format collection of widget settings.
 See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available properties ("Settings").
