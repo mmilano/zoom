@@ -37,7 +37,7 @@ circumstance that this is an extracted part from a larger project.
 
 ### Example Element on a Page
 
-```
+``` 
 <div class="zoom-example" id="exampleID" data-imagezoom-id="exampleID" data-zoom-options='{"on":"mouseover", "magnify":"2"}'>
 
     <figure>
@@ -49,16 +49,15 @@ circumstance that this is an extracted part from a larger project.
     </figure>
 
 </div>
-```
+``` 
 
 Linking to the library
 ```
 <script src="./assets/js/zoom.js"></script>
-```
+``` 
 
 
-See `index.html` for a simple demonstration.
-
+### Notes on Using the Widget
 
 * Each image element must have a unique id, and the `data-imagezoom-id` attribute value must be set to the id.
 
@@ -68,12 +67,16 @@ The options must be valid json; if there is a parsing error, an error message wi
 * See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available zoom-option properties ("Settings").
 
 
+### Usage Demo
+See `index.html` for a simple demonstration.
+
 
 ## Installation
 
 ### Installation/Development Dependencies
 * jquery
 * FontAwesome
+
 
 
 1. git clone/download locally.
@@ -114,7 +117,7 @@ By default, the build process does not minify the css nor the javascript. The po
 are commented-out in the gulp tasks. To enable them, simply un-comment the lines noted in the tasks.
 
 #### Dev webserver
-Edit the serverOptions values in `gulpfile.js` if you want to change the http port being used for the demo webserver.
+Edit the `serverOptions` value in the gulp task if you want to change the http port being used for the demo webserver.
 
 
 ### Dependencies
