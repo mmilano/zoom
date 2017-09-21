@@ -25,95 +25,83 @@ The larger project includes dynamically-generated image elements on a page, and 
 Note that if some of the decisions made here seem curious to you (e.g. all of fontawesome for just one glyph?), the explanation probably lies in the circumstance that this is an extracted part of a larger project. 
 
 
-## Example Element
+
+
+## Usage
+
+### Example Element on a Page
 
 ```
-    <div class="zoom-example" id="example" data-imagezoom-id="example" data-zoom-options='{"on":"mouseover", "magnify":"2"}'>
+<div class="zoom-example" id="example" data-imagezoom-id="example" data-zoom-options='{"on":"mouseover", "magnify":"2"}'>
 
-        <figure>
-            <div class="image-zoomable">
-                <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Willow" title="Hold and drag to view in detail." />
-                <div class="zoom-mark"><div class="cutout"></div><span class="icon fa fa-search"></span></div>
-            </div>
-            <figcaption>Hover (aka. mouseover)</figcaption>
-        </figure>
+    <figure>
+        <div class="image-zoomable">
+            <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Willow" title="Hold and drag to view in detail." />
+            <div class="zoom-mark"><div class="cutout"></div><span class="icon fa fa-search"></span></div>
+        </div>
+        <figcaption>Hover (aka. mouseover)</figcaption>
+    </figure>
 
-    </div>
+</div>
 ```    
 
 See `index.html` for a working demonstration.
 
 
-## Usage
+* Each image element must have a unique id and the data-imagezoom-id value must also be the id.
 
-Each image element must have a unique id and the data-imagezoom-id value must also be the id.
-
-The data-zoom-options attribute is a json-format collection of widget settings.
+* The data-zoom-options attribute is a json-format collection of widget settings.
 See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available properties ("Settings").
 
 
 
+#### The jquery.zoom widget
+This relies on the [jQuery.zoom](https://github.com/jackmoore/zoom) plugin to enlarge images on touch, click, or mouseover. 
+See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the plugin details and available settings.
+
+
+
+## Installation
+
 ### Dependencies
 
-#### For development
+#### For Development
 * node
 * npm
-* numerous node modules (including the original jquery.zoom library), which are handled by npm
 
-#### For usage
+#### For Usage
 * jquery
 * FontAwesome
 
-## Installation
 
 1. git clone/download locally.
 
 2. Expand, and navigate to the new directory.
-
 ```
 cd zoom-plus
-
-
 ```
 
-3. Initialize the project. This will chug along for a bit, downloading all the module dependencies
-
+3. Initialize the project. This will chug along for a bit, downloading all the development dependencies.
 ```
 npm install
-
 ```
 
-
 4. Run the gulp build task.
-
 ```
 gulp
 ```
 
-
-5. Browse to the local webserver to view the demo page
-
+5. Browse to the dev webserver to view the demo page.
+Edit `gulpfile.js` if you want to change the http port being used.
 ```
 http://localhost:9999
 
-
 ```
-
-
-
-## Usage
-
-
-
-
-
-
 
 
 ## Tests
 
 There are no tests.
-
 
 
 
