@@ -98,6 +98,13 @@ http://localhost:9999
 ```
 
 
+### Development Notes
+
+By default, the build process does not minify the css nor the javascript. The portions of the tasks that do the minification (cssnano and uglify, respectively)
+are commented-out in the gulp tasks. To enable them, simply un-comment the lines noted in the tasks.
+
+
+
 ### Dependencies
 #### For Development
 * node
