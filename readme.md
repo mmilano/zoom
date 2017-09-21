@@ -3,7 +3,7 @@
 Founded on top of the jquery.zoom plugin, this version wraps the original widget into a module with slightly different clothes,
 converting the front-end of the widget to use css and webfont elements, and altering the structure of the html image element.
 
-### Changes From the Original
+### Evolutions From the Original
 
 * Incorporates the original js widget into a self-executing module that will run on the document.ready event and 
 automatically initialize all of the image-zoom elements it can find on the page.
@@ -21,9 +21,9 @@ automatically initialize all of the image-zoom elements it can find on the page.
 I adapted the original library to use as part of a larger project I was developing, and have broken it out here as a stand-alone resource and demonstration.
 The larger project includes dynamically-generated image elements on a page, and I wanted a widget that would be more autonomous than the original, one where the settings for the widget were incorporated with the instance itself.
 
-Arguably this specific project is not exactly a fork of the original widget anymore, but is some manner of tangent with wrapping. Point acknowledged.
+Arguably this specific project is not exactly a fork of the original widget anymore, but is some form of tangent with wrapping. Point acknowledged.
 
-Note: if some of the decisions made here seem curious to you (for example: all of fontawesome for just one glyph?), the explanation probably lies in the 
+Note: if some of the decisions made here seem curious or 'heavy' to you (for example: all of fontawesome for just one glyph?), the explanation probably lies in the 
 circumstance that this is an extracted part from a larger project. 
 
 
@@ -57,10 +57,10 @@ See `index.html` for a simple demonstration.
 
 * Each image element must have a unique id, and the `data-imagezoom-id` attribute value must be set to the id.
 
-* The `data-zoom-options` attribute is a json-format collection of widget settings. It is read and parsed by the instantiating code and passed to the zoom library.
-See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available properties ("Settings").
+* The `data-zoom-options` attribute is a json-format collection of widget settings. It is read and parsed by the instantiating code (`init.zoom.js`) and passed to the zoom library.
+The options must be valid json; if there is a parsing error, an error message will be output to the browser developer console.
 
-
+* See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available zoom-option properties ("Settings").
 
 
 
@@ -80,18 +80,17 @@ npm install
 
 4. Run the gulp build task.
 This will:
-* create a `build` directory, and copy assets into that directory
+* create a `build` directory, and copy the assets into that directory
 * generate the css from the sass
 * browserify the javascript and create a single file
 * start a dev webserver
-* start a couple `gulp watch` process to monitor the source files for changes
+* start a couple `gulp watch` processed to monitor the source files for changes
 
 ```
 gulp
 ```
 
-5. Browse to the dev webserver to view the demo page.
-Edit `gulpfile.js` if you want to change the http port being used.
+5. Open a browser to the dev webserver to view the demo page.
 ```
 http://localhost:9999
 
@@ -100,9 +99,12 @@ http://localhost:9999
 
 ### Development Notes
 
+#### Css and JS minification
 By default, the build process does not minify the css nor the javascript. The portions of the tasks that do the minification (cssnano and uglify, respectively)
 are commented-out in the gulp tasks. To enable them, simply un-comment the lines noted in the tasks.
 
+#### Dev webserver
+Edit the serverOptions values in `gulpfile.js` if you want to change the http port being used for the demo webserver.
 
 
 ### Dependencies
@@ -128,5 +130,5 @@ There are no tests.
 
 ## Changelog:
 
-##### v1.0 - 2017/9/18
+##### v1.0.1 - 2017/9/18
 * converted the original jquery.zoom widget into a gulp-built, browserified widget module.
