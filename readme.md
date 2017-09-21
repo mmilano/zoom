@@ -8,12 +8,12 @@ converting the front-end of the widget to use css and webfont elements, and alte
 * Incorporates the original js widget into a self-executing module that will run on the document.ready event and 
 automatically initialize all of the image-zoom elements it can find on the page.
 * Changed the html element structure that is used for the image.
-* Zoom options are embedded into the html as json-format data attributes and parsed at initialization (rather than requiring a javascript object that is passed to the library).
+* Zoom options are embedded into the html as json-format data attributes and parsed at initialization (rather than requiring a separate javascript object that is passed to the library).
 * Adapted a gulp build process that compiles the sass, assembles and browserifys the javascript.
 * Styled via sass rules that are compiled to css.
 * Replaced the cursor 'grab' and 'grabbing' images with css 'cursor' rules.
 * Replaces the corner cutout ("notch") image file with a css-generated graphic.
-* Replaced the magnifying glass image with FontAwesome glyph.
+* Replaced the magnifying glass image file with a FontAwesome glyph.
 * Featuring a new dog.
 
 
@@ -29,6 +29,11 @@ circumstance that this is an extracted part from a larger project.
 
 
 ## Usage
+
+### Usage Dependencies
+* jquery
+* FontAwesome
+
 
 ### Example Element on a Page
 
@@ -65,6 +70,11 @@ The options must be valid json; if there is a parsing error, an error message wi
 
 
 ## Installation
+
+### Installation/Development Dependencies
+* jquery
+* FontAwesome
+
 
 1. git clone/download locally.
 
