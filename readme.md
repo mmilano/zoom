@@ -74,19 +74,21 @@ See `index.html` for a simple demonstration.
 ## Installation
 
 ### Installation/Development Dependencies
-* jquery
-* FontAwesome
+* node
+* npm
 
 
 
-1. git clone/download locally.
+### Installation Process
+
+1. git clone/download the project.
 
 2. Expand, and navigate to the new directory.
 ```
 cd zoom-plus-master
 ```
 
-3. Initialize the project. This will chug along for a bit, creating the node_modules folder and downloading all the development dependencies.
+3. Initialize the project via npm. This will chug along for a bit, creating the node_modules folder and downloading all the development dependencies.
 ```
 npm install
 ```
@@ -97,8 +99,7 @@ This will:
 * generate the css from the sass
 * browserify the javascript and create a single file
 * start a dev webserver
-* start a couple `gulp watch` processed to monitor the source files for changes
-
+* start a couple `gulp watch` processes to monitor the source files for changes
 ```
 gulp
 ```
@@ -106,31 +107,20 @@ gulp
 5. Open a browser to the dev webserver to view the demo page.
 ```
 http://localhost:9999
-
 ```
 
 
 ### Development Notes
 
-#### Css and JS minification
-By default, the build process does not minify the css nor the javascript. The portions of the tasks that do the minification (cssnano and uglify, respectively)
-are commented-out in the gulp tasks. To enable them, simply un-comment the lines noted in the tasks.
+#### .css and .js Mminification
+By default, the build process does not minify the css nor the javascript. The portions of the tasks that do the minification (using cssnano and uglify, respectively)
+are commented-out in the gulp tasks. To enable them, simply un-comment the noted lines.
 
 #### Dev webserver
 Edit the `serverOptions` value in the gulp task if you want to change the http port being used for the demo webserver.
 
 
-### Dependencies
-#### For Development
-* node
-* npm
-
-#### For Usage
-* jquery
-* FontAwesome
-
-
-##### The jquery.zoom widget
+#### The jquery.zoom widget
 This relies on the [jQuery.zoom](https://github.com/jackmoore/zoom) plugin, which is incorporated into the assemblied javascript file `zoom.js`.
 See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the plugin details and available settings.
 
