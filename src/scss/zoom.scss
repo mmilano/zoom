@@ -82,10 +82,8 @@ $zoom-corner-size-hover: $zoom-corner-size + 15;
             top: $zoom-icon-position-y;
             right: $zoom-icon-position-x;
 
-            font-family: FontAwesome;
             font-size: $zoom-icon-font-size;
             color: $zoom-icon-glyph-color;
-            // content: $zoom-icon-glyph;
             @include zoom-transition-out;
         }
     }
