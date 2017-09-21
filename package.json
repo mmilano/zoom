@@ -1,29 +1,29 @@
 {
-	"name": "jquery-zoom-mod",
-	"description": "Enlarge images on click or mouseover.",
-	"version": "1.7.20",
+	"name": "jquery-zoom-plus",
+	"description": "Javascript module incorporating the jquery.zoom image widget to enlarge images on mouseover, grab, click/touch, or toggle.",
+	"version": "1.0",
 	"keywords": [
 		"zoom",
 		"images",
 		"ui",
-		"jquery-plugin"
+		"jquery-plugin",
+		"willow the dog"
 	],
 	"author": {
-		"name": "Jack Moore",
-		"url": "http://www.jacklmoore.com",
-		"email": "hello@jacklmoore.com"
+        "name": "Michel Milano",
+        "url": "http://www.stochasticnotions.com"
 	},
-	"contributors": [
-		{
-			"name": "Michel Milano",
-			"url": "http://www.stochasticnotions.com"
-		}
-	],
 	"main": "index.html",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "http://github.com/mmilano/zoom.git"
+		"url": "http://github.com/mmilano/zoom-plus.git"
+	},
+    {
+      "bugs": "https://github.com/mmilano/zoom-plus/issues"
+    }
+	"scripts": {
+	    "build": "gulp"
 	},
 	"dependencies": {
 		"jquery": ">=3.1",
