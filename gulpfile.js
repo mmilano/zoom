@@ -44,7 +44,6 @@ var serverOptions = {
     port: 9999,
     defaultFile: "index.html",
     root: zoomBuildRoot,
-    livereload: true,
     directoryListing: {
       enable: false,
       path: "./"
