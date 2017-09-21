@@ -37,7 +37,7 @@ circumstance that this is an extracted part from a larger project.
 
     <figure>
         <div class="image-zoomable">
-            <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Willow" title="Hold and drag to view in detail." />
+            <img class="img-fluid" src="./assets/img/willow_the_dog.jpg" alt="Willow" />
             <div class="zoom-mark"><div class="cutout"></div><span class="icon fa fa-search"></span></div>
         </div>
         <figcaption>Hover (aka. mouseover)</figcaption>
@@ -55,9 +55,9 @@ Linking to the library
 See `index.html` for a simple demonstration.
 
 
-* Each image element must have a unique id, and the data-imagezoom-id attribute value must be set to the id.
+* Each image element must have a unique id, and the `data-imagezoom-id` attribute value must be set to the id.
 
-* The data-zoom-options attribute is a json-format collection of widget settings. It is read and parsed by the instantiating code and passed to the zoom library.
+* The `data-zoom-options` attribute is a json-format collection of widget settings. It is read and parsed by the instantiating code and passed to the zoom library.
 See the original [jquery.zoom project page](http://jacklmoore.com/zoom/) for documentation of the available properties ("Settings").
 
 
