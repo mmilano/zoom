@@ -1,7 +1,7 @@
 {
 	"name": "jquery-zoom-plus",
 	"description": "Javascript module incorporating the jquery.zoom image widget to enlarge images on mouseover, grab, click/touch, or toggle.",
-	"version": "1.0",
+	"version": "1.0.1",
 	"keywords": [
 		"zoom",
 		"images",
@@ -10,8 +10,8 @@
 		"willow the dog"
 	],
 	"author": {
-        "name": "Michel Milano",
-        "url": "http://www.stochasticnotions.com"
+		"name": "Michel Milano",
+		"url": "http://www.stochasticnotions.com"
 	},
 	"main": "index.html",
 	"license": "MIT",
@@ -19,11 +19,9 @@
 		"type": "git",
 		"url": "http://github.com/mmilano/zoom-plus.git"
 	},
-    {
-      "bugs": "https://github.com/mmilano/zoom-plus/issues"
-    }
+	"bugs": "https://github.com/mmilano/zoom-plus/issues",
 	"scripts": {
-	    "build": "gulp"
+		"build": "gulp"
 	},
 	"dependencies": {
 		"jquery": ">=3.1",
@@ -37,11 +35,13 @@
 		"gulp-cached": "^1.1.1",
 		"gulp-changed-in-place": "^2.2.0",
 		"gulp-connect": "^5.0.0",
+		"gulp-cssnano": "^2.1.2",
 		"gulp-jshint": "^2.0.4",
 		"gulp-notify": "^3.0.0",
 		"gulp-rename": "^1.2.2",
 		"gulp-sass": "^3.1.0",
 		"gulp-sourcemaps": "^2.6.1",
+		"gulp-uglify": "^3.0.0",
 		"jshint": "^2.9.5",
 		"vinyl-buffer": "^1.0.0",
 		"vinyl-source-stream": "^1.1.0"

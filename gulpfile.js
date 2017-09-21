@@ -6,22 +6,24 @@ var gutil =         require("gulp-util");
 // css sass scss etc
 var sass =          require("gulp-sass");
 var autoprefixer =  require("gulp-autoprefixer");
+var cssnano =       require("gulp-cssnano");
 
 // javascript
 var jshint =        require("gulp-jshint");
 var browserify =    require("browserify");
-var source =        require("vinyl-source-stream");
-var buffer =        require("vinyl-buffer");
+var uglify =        require("gulp-uglify");
 
 // webserver
 var connect =       require("gulp-connect");
 
 // tools
 var sourcemaps =    require("gulp-sourcemaps");
-var rename =        require("gulp-rename");
+// var rename =        require("gulp-rename");
 var cached =        require("gulp-cached");
 // var changed =       require("gulp-changed");
 // var changedInPlace = require("gulp-changed-in-place");
+var source =        require("vinyl-source-stream");
+var buffer =        require("vinyl-buffer");
 var clean =         require("del");
 var path =          require("path");
 var fs =            require("fs");
@@ -110,8 +112,7 @@ gulp.task("compile:sass", function compileSASS() {
     .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on("error", sass.logError))
     .pipe(autoprefixer(autoprefixerOptions))
-//     .pipe(rename({ suffix: ".min" }))        // disabled minification of css
-//     .pipe(cssnano())                         // disabled minification of css
+//     .pipe(cssnano())                 // disabled minification of css. uncomment line to enable.
     .pipe(sourcemaps.write("./map"))
     .pipe(gulp.dest(cssDestination))
     .on("end", function(event) {
@@ -130,7 +131,6 @@ gulp.task("watch:sass", function() {
         console.log("watch:sass >>> File " + event.path + " was " + event.type );
     });
 });
-
 
 
 
@@ -171,7 +171,7 @@ function browserifyScript(file) {
         .pipe(buffer())
         .pipe(sourcemaps.init())
         // Add transformation tasks to the pipeline here
-//         .pipe(uglify())         // disabled minification of js
+//         .pipe(uglify())                 // disabled minification of css. uncomment line to enable.
         // end transforms
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(jsDestination))
@@ -240,6 +240,8 @@ gulp.task("watch", [], function watchAll() {
     gulp.start(["watch:js"]);
     gulp.start(["watch:index"]);
 });
+
+
 
 // default build task
 gulp.task("default", ["zoom:setup", "watch"], function taskDefault() {
